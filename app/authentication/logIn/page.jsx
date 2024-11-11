@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 
 const logIn = () => {
 
@@ -22,9 +23,11 @@ const logIn = () => {
         password: password,
         phone: phone,
   })
- 
+    
     if (response.ok) {
-       window.history.back()
+        localStorage.setItem("RepliqToken", JSON.stringify(response.body.token))
+        localStorage.setItem("RepliqUserInfo", JSON.stringify(response.body))
+       router.back()
     } 
   }
  
